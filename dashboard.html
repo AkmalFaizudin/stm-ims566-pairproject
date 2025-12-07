@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Student Task Manager</title>
+    <meta name="description" content="Student Task Manager Dashboard. View and track active and completed academic tasks and assignments.">
+    <meta name="keywords" content="dashboard, student task manager, task, assignment, ims566, chart, data visualization, web application">
+    
+    <link rel="icon" href="data:,">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <script>
+        (function() {
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+
+</head>
+
+<body>  
+    <!-- Navbar Hamburger -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar-gradient shadow-sm sticky-top">
+    <div class="container-fluid">
+
+        <!-- BRAND -->
+        <a class="navbar-brand d-flex align-items-center" href="dashboard.html">
+            <img src="iconimage/loginIcon.png" width="50" class="mb-2 me-2">
+            Student Task Manager
+        </a>
+
+        <div class="d-flex align-items-center d-lg-none">
+        <!-- Dark Mode Mobile View -->
+        <button class="btn btn-outline-light me-1" id="darkModeToggleMobile" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+
+        <!-- Hamburger -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        </div>
+
+        <!-- MENU -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item d-flex align-items-center">
+                    <a class="nav-link active" href="dashboard.html">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="tasks_active.html">
+                        <i class="fa-solid fa-bars-progress"></i> Active Tasks
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="tasks_completed.html">
+                        <i class="bi bi-check2-square"></i> Completed Tasks
+                    </a>
+                </li>
+
+                <!--  DARK MODE (DESKTOP View) -->
+                <button class="btn btn-outline-light ms-2 d-none d-lg-inline" id="darkModeToggleDesktop" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                                    </button>    
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <img src="iconimage/akmal.jpg" class="rounded-circle me-1" style="width:28px;height:28px;">
+                        Setting
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item text-danger d-flex justify-content-between align-items-center" href="#" id="logoutButton">
+                                Log Out <i class="fa-solid fa-arrow-right ms-2"></i>
+                                </li>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    
+        <!-- Content for dashboard -->
+        <main class="container-fluid p-4">
+            <h1 class="mb-4 text-dark"><i class="bi bi-speedometer2"></i> Akmal's Dashboard</h1>
+            
+        <div class="row mb-4 g-3">
+        <!-- Total task container -->
+        <div class="col-md-4">
+            <div class="card summary-card gradient-info shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-layer-group fa-2x float-end opacity-50"></i>
+                        <p class="card-title">Total Tasks</p>
+                            <h3 class="card-value" id="totalTasks">6</h3>
+                        </div>
+                    </div>
+                </div>
+
+        <!-- Active task container -->
+        <div class="col-md-4">
+            <div class="card summary-card gradient-warning shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-list-check fa-2x float-end opacity-50"></i>
+                        <p class="card-title">Active Tasks</p>
+                            <h3 class="card-value" id="activeTasks">3</h3>
+                        </div>
+                    </div>
+                </div>
+
+        <!-- Completed tasks container -->
+        <div class="col-md-4">
+            <div class="card summary-card gradient-success shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-check-double fa-2x float-end opacity-50"></i>
+                        <p class="card-title">Completed Tasks</p>
+                            <h3 class="card-value" id="completedTasks">3</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Doughnut Chart -->
+        <div class="row mb-4 g-3">
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-center text-dark">Doughnut Chart</h5>
+                        <div class="chart-container">
+                            <canvas id="taskStatusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bar Chart -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-center text-dark">Bar Chart</h5>
+                        <div class="chart-container">
+                            <canvas id="taskPriorityChart"></canvas> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0 text-dark"><i class="fas fa-calendar-alt me-2"></i> Upcoming Submissions</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">Individual Assignment IMS566</span>
+                                <span class="badge bg-danger rounded-pill">Submission: 15 Dec</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">Group Assignment IMS564</span>
+                                <span class="badge bg-warning text-dark rounded-pill">Submission: 9 Dec</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">Article Review CTU554</span>
+                                <span class="badge bg-primary rounded-pill">Submission: 8 Dec</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    
+    <footer class="footer mt-auto py-3 bg-light border-top">
+    <div class="container-fluid text-center">
+        <span class="text-muted">© 2025 Student Task Manager | IMS566 Pair Project | Mohammad Akmal Faizudin Shashi & Rusydan Jaman | v1.0 | Last updated: 7 Dec 2025</span>
+        <p class="small text-muted mb-0">Developed using Bootstrap 5 and Chart.js</p>
+    </div>
+</footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="dashboard.js"></script>
+    
+    <!--  Toast -->
+<div id="deadlineToastContainer" 
+     class="toast-container position-fixed bottom-0 end-0 p-3"
+     style="z-index: 9999;">
+</div>
+
+</body>
+</html>
