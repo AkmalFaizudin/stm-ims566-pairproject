@@ -7,22 +7,10 @@ const taskData = {
         high: 2, 
         medium: 1, 
         low: 3, 
-    },
-    // BARU: Data Tugasan Sebenar (Simulasi)
-    tasks: [
-        { title: "Individual Assignment IMS566", due_date: "2025-12-15", priority: "High", is_completed: false },
-        { title: "Group Assignment IMS564", due_date: "2025-12-09", priority: "Medium", is_completed: false },
-        { title: "Article Review CTU554", due_date: "2025-12-08", priority: "Low", is_completed: false },
-        { title: "Basic Web Design Exercises", due_date: "2025-12-01", priority: "Low", is_completed: true },
-        { title: "CTU554 Group Presentation Slides", due_date: "2025-11-29", priority: "Medium", is_completed: true },
-        { title: "Task 6 (Completed)", due_date: "2025-12-05", priority: "High", is_completed: true }
-    ]
+    }
 };
 
 
-
-
-// 3. Load Summary Data to Cards
 function loadSummaryData() {
     document.getElementById('totalTasks').textContent = taskData.total;
     document.getElementById('activeTasks').textContent = taskData.active;
@@ -41,7 +29,7 @@ function getChartStyle(isDarkMode) {
 }
 
 
-// 4. Doughnut Chart (Task Status Division) - DARK MODE AWARE
+// Doughnut Chart (Task Status Division)
 let statusChartInstance = null; 
 
 function renderTaskStatusChart() {
@@ -93,7 +81,7 @@ function renderTaskStatusChart() {
 }
 
 
-// 5. Bar Chart (Task Priority Distribution) - NEW CHART & DARK MODE AWARE
+// Bar Chart (Task Priority Distribution)
 let priorityChartInstance = null;
 
 function renderPriorityBarChart() {
@@ -151,7 +139,7 @@ function renderPriorityBarChart() {
     });
 }
 
-// 6. DARK MODE TOGGLE FUNCTIONALITY (Reused from script.js)
+// DARK MODE TOGGLE FUNCTIONALITY 
 function setupDarkModeToggle() {
     const desktopBtn = document.getElementById('darkModeToggleDesktop');
     const mobileBtn = document.getElementById('darkModeToggleMobile');
@@ -184,7 +172,7 @@ function setupDarkModeToggle() {
     updateIcon();
 }
 
-// 7. FUNGSI BARU: PAPARKAN NOTIFIKASI KIRAAN TUGASAN AKTIF
+// TOAST/NOTIFICATION FUNCTION
 function showActiveTasksNotification() {
     const activeCount = taskData.active; 
 

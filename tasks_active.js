@@ -1,4 +1,4 @@
-//  DARK MODE TOGGLE FUNCTIONALITY (Reused from script.js)
+//  DARK MODE TOGGLE FUNCTIONALITY 
 function setupDarkModeToggle() {
     const desktopBtn = document.getElementById('darkModeToggleDesktop');
     const mobileBtn = document.getElementById('darkModeToggleMobile');
@@ -37,7 +37,7 @@ function setupDarkModeToggle() {
 // Simulated unique ID generator
 let nextTaskId = 3; 
 
-// Function to generate new task table row (Fully English)
+// Function to generate new task table row 
 function createNewTaskRow(id, title, course, dueDate, priority) {
     let priorityClass = 'bg-primary'; // Low (Default)
     if (priority === 'High') {

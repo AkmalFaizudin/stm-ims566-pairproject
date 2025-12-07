@@ -10,60 +10,59 @@ body {
     background-position: center;
 }
 
-/* --- GAYA GLASSMORPHISM UNTUK KAD LOGIN --- */
+/* --- GLASSMORPHISM CARD DESIGN --- */
 .login-card-glass {
-    /* Bentuk dan Saiz */
-    padding: 25px; /* Memberi ruang di dalam kad */
-    border-radius: 20px; /* Bentuk bucu yang lebih lembut */
+    padding: 25px; 
+    border-radius: 20px; 
     
-    /* Inti Glassmorphism */
+    /* Glassmorphism Fill */
     /* 1. Kaca beku: Menggunakan backdrop-filter */
     backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px); /* Untuk sokongan pelayar WebKit */
     
-    /* 2. Latar belakang lutsinar: Putih/Gelap dengan ketelusan (opacity) rendah */
+    /* 2. Transparent Background: Light/Dark wirh low opacity */
     background: rgba(255, 255, 255, 0.15); 
     
-    /* 3. Sempadan lutsinar (opsional): Memberi efek 'bingkai' cahaya */
+    /* 3. Transparent border */
     border: 1px solid rgba(255, 255, 255, 0.2); 
     
-    /* 4. Shadow lembut (opsional) */
+    /* 4. Soft shadow  */
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* --- GAYA INPUT UNTUK SERASIKAN DENGAN GLASSMORPHISM --- */
+
 .form-control {
-    background: rgba(255, 255, 255, 0.1); /* Latar belakang lutsinar */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Sempadan lutsinar */
-    color: #ffffff; /* Warna teks putih (sebab latar belakang kad gelap) */
+    background: rgba(255, 255, 255, 0.1); 
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    color: #ffffff; 
     transition: background-color 0.3s, border-color 0.3s;
 }
 
 .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.7); /* Warna placeholder yang lebih terang */
+    color: rgba(255, 255, 255, 0.7); 
 }
 
-/* Apabila input difokuskan (diklik) */
+
 .form-control:focus {
-    background: rgba(255, 255, 255, 0.2); /* Sedikit lebih jelas apabila fokus */
+    background: rgba(255, 255, 255, 0.2); 
     border-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
 }
 
-/* Input group icons */
+
 .input-group-text {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #ffffff;
 }
 
-/* Menjadikan semua teks dalam kad cerah untuk serasi dengan latar belakang lutsinar yang gelap */
+
 .login-card-glass h3, 
 .login-card-glass p, 
 .login-card-glass h5,
 .login-card-glass .text-muted,
 .login-card-glass .text-dark {
-    color: #ffffff !important; /* Paksa warna teks menjadi putih */
+    color: #ffffff !important; 
 }
 
 /* Navbar  */
@@ -71,23 +70,22 @@ body {
     font-weight: 700;
     font-family: Arial, Helvetica, sans-serif;
 }
-/* 1. Navbar gradient colour */
+/* Navbar gradient colour */
 .custom-navbar-gradient {
     background: linear-gradient(90deg, #1A2980 0%, #26D0CE 100%); 
 }
 
-/* 2. Gaya Pautan/Teks: Menjamin teks (link dan brand) kekal putih/terang */
+
 .custom-navbar-gradient .navbar-nav .nav-link,
 .custom-navbar-gradient .navbar-brand {
     color: rgba(255, 255, 255, 0.9);
 }
     
-/* 3. Gaya Pautan Aktif: Menonjolkan link yang aktif (kuning) */
+/* 3. Active Link (Yellow) */
 .custom-navbar-gradient .navbar-nav .nav-link.active {
     color: #ffc107; 
     font-weight: bold;
 }    
-
 
 
 /* Dashboard Card Styles */
@@ -135,7 +133,7 @@ body {
 
 /* Responsive Chart Container */
 .chart-container {
-    height: 350px; /* Fixed height for consistency in Dashboard */
+    height: 350px; 
     width: 100%;
     margin: auto;
 }
@@ -154,24 +152,10 @@ body {
 /* Styling for Deadline Notifications in Dark Mode */
 body.dark-mode .toast-header,
 body.dark-mode .toast-body {
-    /* Set warna teks lalai dalam toast kepada cerah */
     color: #f0f0f0 !important; 
 }
 
-/* Override untuk warna khas dalam Dark Mode */
-body.dark-mode .toast.bg-danger {
-    background-color: #721c24 !important; /* Merah gelap */
-}
 
-body.dark-mode .toast.bg-warning {
-    background-color: #856404 !important; /* Kuning gelap */
-}
-
-body.dark-mode .toast.bg-info {
-    background-color: #0c5460 !important; /* Biru gelap */
-}
-
-/* Pastikan butang tutup X kelihatan */
 body.dark-mode .btn-close {
     filter: invert(1) grayscale(100%) brightness(200%); /* Jadikan X putih */
 }
@@ -183,7 +167,6 @@ body.dark-mode {
     color: #e0e0e0 !important;
 }
 
-/* Override Key Background Elements in Dark Mode */
 body.dark-mode .navbar,
 body.dark-mode .bg-light,
 body.dark-mode .footer,
@@ -195,7 +178,6 @@ body.dark-mode .card-header {
     border-color: #333333 !important;
 }
 
-/* Text and Heading Colors in Dark Mode */
 body.dark-mode .text-dark,
 body.dark-mode .form-label,
 body.dark-mode h1,
@@ -234,12 +216,12 @@ body.dark-mode .table {
     border: 1px solid #333333;
 }
 body.dark-mode .table > :not(caption) > * > * {
-    background-color: #1e1e1e !important; /* Latar belakang sel (gelap) */
-    color: #f0f0f0 !important; /* Warna teks dalam sel (putih/cerah) */
-    border-color: #333333 !important; /* Warna garisan sel */
+    background-color: #1e1e1e !important; 
+    color: #f0f0f0 !important; 
+    border-color: #333333 !important; 
 }
 body.dark-mode .table-striped > tbody > tr:nth-of-type(odd) > * {
-    background-color: #292929 !important; /* Sedikit lebih gelap daripada #1e1e1e */
+    background-color: #292929 !important; 
 }
 body.dark-mode .table thead {
     background-color: #3a3a3a !important; 
@@ -250,9 +232,9 @@ body.dark-mode .table a {
     color: #f0f0f0 !important;
 }
 
-/* Modal Header Dark Mode */
+/* Header Dark Mode */
 body.dark-mode .modal-header.bg-success {
-    background-color: #198754 !important; /* Keep success green */
+    background-color: #198754 !important; 
 }
 
 /* Adjusting Badge colors for better contrast in Dark Mode */
